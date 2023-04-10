@@ -1,22 +1,22 @@
-const loadAI = async () => {
+const loadAI = async (dataLimit) => {
 
     toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
     // console.log(data);
-    displayAI(data.data.tools);
+    displayAI(dataLimit, data.data.tools);
 }
 
-const displayAI = data => {
+const displayAI = (dataLimit, data) => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = '';
    
     // show all button
     const showAllBtn = document.getElementById('show-all-btn');
-    if(data.length>6)
+    if(dataLimit && data.length>dataLimit)
     {
-        data = data.slice(0,6);
+        data = data.slice(0,dataLimit);
         showAllBtn.classList.remove('d-none');
     }
     else{
@@ -61,6 +61,7 @@ const displayAI = data => {
     toggleSpinner(false);
 }
 
+
 const toggleSpinner = isLoading =>{
     const loaderCheck = document.getElementById('loader');
     if(isLoading)
@@ -68,5 +69,9 @@ const toggleSpinner = isLoading =>{
     else
         loaderCheck.classList.add('d-none');
 }
+document.getElementById('btn-show-all').addEventListener('click', function(){
+    toggleSpinner(true);
+    loadAI();
+});
 
-loadAI();
+loadAI(6);
