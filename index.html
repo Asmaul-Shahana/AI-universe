@@ -31,19 +31,37 @@
         <!-- Card section -->
         <section>
             <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4"></div>
+
             <!-- Show all button -->
             <div id="show-all-btn" class="text-center mt-4 d-none">
                 <button id="btn-show-all" class="btn btn-danger pt-2 pb-2">See More</button>
             </div>
-            <!-- spinner/loader -->
-            <section id="loader" class="d-none">
-                <div style="height: 500px;" class="d-flex justify-content-center align-items-center">
-                    <div class="spinner-border text-secondary" role="status">
-                        <span class="visually-hidden">Loading...</span>
+        </section>
+
+        <!-- spinner/loader -->
+        <section id="loader" class="d-none">
+            <div style="height: 500px;" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border text-secondary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ai-detail-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom: 0!important;">
+                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                    <div id="detail-modal-body" class="modal-body container">
+
                     </div>
                 </div>
-            </section>
-        </section>
+            </div>
+        </div>
+
     </main>
 
 
