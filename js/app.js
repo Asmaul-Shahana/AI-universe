@@ -1,4 +1,6 @@
 const loadAI = async () => {
+
+    toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
@@ -8,7 +10,19 @@ const loadAI = async () => {
 
 const displayAI = data => {
     const cardContainer = document.getElementById('card-container');
-    cardContainer.innerText = '';
+    cardContainer.textContent = '';
+   
+    // show all button
+    const showAllBtn = document.getElementById('show-all-btn');
+    if(data.length>6)
+    {
+        data = data.slice(0,6);
+        showAllBtn.classList.remove('d-none');
+    }
+    else{
+        showAllBtn.classList.add('d-none');
+    }
+
     data.forEach(ai => {
         console.log(ai);
         const cardDiv = document.createElement('div');
@@ -35,8 +49,7 @@ const displayAI = data => {
         const listC = document.getElementById(`${ai.id}`); 
 
         const featureList = document.createElement('ol');
-        console.log(ai.features[0]);
-        // featureList.innerText = '';
+        featureList.innerText = '';
         console.log((ai.features).length);
         for (let i = 0; i < (ai.features).length; i++) {
             const flist = document.createElement('li');
@@ -45,7 +58,15 @@ const displayAI = data => {
         };
         listC.appendChild(featureList);
     });
-    
+    toggleSpinner(false);
+}
+
+const toggleSpinner = isLoading =>{
+    const loaderCheck = document.getElementById('loader');
+    if(isLoading)
+        loaderCheck.classList.remove('d-none');
+    else
+        loaderCheck.classList.add('d-none');
 }
 
 loadAI();
