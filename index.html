@@ -53,10 +53,43 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header" style="border-bottom: 0!important;">
-                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                    <div id="detail-modal-body" class="modal-body">
+                        <button type="button" class="btn-close modal-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div id="detail-modal-body modal-body">
+                        <div class="row row-cols-1 row-cols-md-2 g-4 m-md-4">
+                            <div class="col">
+                                <div class="card h-100 detail-card">
+                                    <div class="card-body">
+                                        <section id="card-upper">
+                                        </section>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h5 class="fw-bold">Features</h5>
+                                                <small>
+                                                    <ul style="padding-left:1rem!important;" class="text-secondary" id="fetures-detail">
 
+                                                    </ul>
+                                                </small>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold">Integration</h5>
+                                                <small>
+                                                    <ul style="padding-left:1rem!important;" class=" text-secondary" id="integration-detail">
+
+                                                </ul>
+                                            </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div id="card-lower" class="card h-100 detail-card">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

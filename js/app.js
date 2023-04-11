@@ -11,15 +11,14 @@ const loadAI = async (dataLimit) => {
 const displayAI = (dataLimit, data) => {
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = '';
-   
+
     // show all button
     const showAllBtn = document.getElementById('show-all-btn');
-    if(dataLimit && data.length>dataLimit)
-    {
-        data = data.slice(0,dataLimit);
+    if (dataLimit && data.length > dataLimit) {
+        data = data.slice(0, dataLimit);
         showAllBtn.classList.remove('d-none');
     }
-    else{
+    else {
         showAllBtn.classList.add('d-none');
     }
 
@@ -53,7 +52,7 @@ const displayAI = (dataLimit, data) => {
         </div>
         `;
         cardContainer.appendChild(cardDiv);
-        const listC = document.getElementById(`${ai.id}`); 
+        const listC = document.getElementById(`${ai.id}`);
 
         const featureList = document.createElement('ol');
         featureList.innerText = '';
@@ -69,83 +68,111 @@ const displayAI = (dataLimit, data) => {
 }
 
 
-const toggleSpinner = isLoading =>{
+const toggleSpinner = isLoading => {
     const loaderCheck = document.getElementById('loader');
-    if(isLoading)
+    if (isLoading)
         loaderCheck.classList.remove('d-none');
     else
         loaderCheck.classList.add('d-none');
 }
-document.getElementById('btn-show-all').addEventListener('click', function(){
+document.getElementById('btn-show-all').addEventListener('click', function () {
     toggleSpinner(true);
     loadAI();
 });
 
-const loadAIDetails = async(id)=>{
+const loadAIDetails = async (id) => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayAIDetails(data.data);
 }
 
-const displayAIDetails = data =>{
+const displayAIDetails = data => {
     console.log(data);
+    const cardUpper = document.getElementById('card-upper');
+    const featuresDetail = document.getElementById('fetures-detail');
+    const cardLower = document.getElementById('card-lower');
+    const integrationDetail = document.getElementById('integration-detail');
 
-    const detailModalBody = document.getElementById('detail-modal-body');
-    detailModalBody.innerHTML=`
-        <div class="row row-cols-1 row-cols-md-2 g-4 m-md-4">
-            <div class="col">
-                <div class="card h-100 detail-card">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold mb-3">${data.description}</h5>
-                        <div class="row row-cols-1 row-cols-md-3 g-3">
-                            <div class="col">
-                                <div class="h-100 p-2 rounded bg-white text-success fw-bold d-flex justify-content-center align-items-center flex-column">
-                                ${data.pricing ?
-                                `<div>${data.pricing[0].price}</div>`
-                                : `<div class="text-center">Free of Cost/</div>` 
-                                }
-                                <div> ${data.pricing ? data.pricing[0].plan : `No plan`} </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100 p-2 rounded bg-white text-warning fw-bold d-flex justify-content-center align-items-center flex-column">
-                                ${data.pricing ?
-                                `<div>${data.pricing[1].price}</div>`
-                                : `<div class="text-center">Free of Cost/</div>` 
-                                }
-                                <div> ${data.pricing ? data.pricing[1].plan : `No plan`} </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="h-100 p-2 rounded bg-white text-danger fw-bold d-flex justify-content-center align-items-center flex-column">
-                                ${data.pricing ?
-                                `<div>${data.pricing[2].price}</div>`
-                                : `<div class="text-center">Free of Cost/</div>` 
-                                }
-                                <div> ${data.pricing ? data.pricing[2].plan : `No plan`} </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 detail-card">
-                    <div class="d-flex justify-content-center accuracy-container">
-                    <img src="${data.image_link[0]}" class="card-img-top" alt="...">
-                    ${(data.accuracy.score>0) ?    
-                    `<div class="bg-danger text-white rounded h-3 accuracy"> ${(data.accuracy.score)*100 + "% accuracy" }</div>` : `` }
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-bold">${data.input_output_examples ? data.input_output_examples[0].input : "Can you give any example?" }</h5>
-                        <p class="card-text">${data.input_output_examples ? data.input_output_examples[0].output : "No! Not Yet! Take a break!!!" }</p>
-                    </div>
-                </div>
+    cardUpper.innerHTML = `
+    <h5 class="card-title fw-bold mb-3">${data.description}</h5>
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+        <div class="col">
+            <div
+                class="h-100 p-2 rounded bg-white text-success fw-bold d-flex justify-content-center align-items-center flex-column">
+                ${data.pricing ?
+            `<div>${data.pricing[0].price}</div>`
+            : `<div class="text-center">Free of Cost/</div>`
+        }
+                <div> ${data.pricing ? data.pricing[0].plan : `No plan`} </div>
             </div>
         </div>
+        <div class="col">
+            <div
+                class="h-100 p-2 rounded bg-white text-warning fw-bold d-flex justify-content-center align-items-center flex-column">
+                ${data.pricing ?
+            `<div>${data.pricing[1].price}</div>`
+            : `<div class="text-center">Free of Cost/</div>`
+        }
+                <div> ${data.pricing ? data.pricing[1].plan : `No plan`} </div>
+            </div>
+        </div>
+        <div class="col">
+            <div
+                class="h-100 p-2 rounded bg-white text-danger fw-bold d-flex justify-content-center align-items-center flex-column">
+                ${data.pricing ?
+            `<div>${data.pricing[2].price}</div>`
+            : `<div class="text-center">Free of Cost/</div>`
+        }
+                <div> ${data.pricing ? data.pricing[2].plan : `No plan`} </div>
+            </div>
+        </div>
+    </div> 
     `;
-    
+
+    cardLower.innerHTML = `
+    <div class="d-flex justify-content-center accuracy-container">
+        <img src="${data.image_link[0]}" class="card-img-top" alt="...">
+             ${(data.accuracy.score > 0) ?
+            `<div class="bg-danger text-white rounded h-3 accuracy">
+                ${(data.accuracy.score) * 100 + "% accuracy"}</div>` : ``}
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">${data.input_output_examples ?
+                     data.input_output_examples[0].input : "Can you give any example?"}</h5>
+                <p class="card-text">${data.input_output_examples ?
+                    data.input_output_examples[0].output : "No! Not Yet! Take a break!!!"} </p>
+            </div>
+    `;
+
+    featuresDetail.innerText='';
+    if(data.features)
+    {
+        for (const fet in data.features) {
+            const fetlist = document.createElement('li');
+            fetlist.innerText = data.features[fet].feature_name;
+            featuresDetail.appendChild(fetlist);
+        }
+    }
+    else{
+        featuresDetail.innerText='No data Found';
+    }
+    integrationDetail.innerText='';
+    if(data.integrations)
+    {
+        for(const x of data.integrations)
+    {
+        const intList = document.createElement('li');
+        intList.innerText = x;
+        integrationDetail.appendChild(intList);
+    }
+    }
+    else{
+        integrationDetail.innerText = 'No data Found';
+    }
+
+
+
 }
 
 loadAI(6);
