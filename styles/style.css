@@ -13,36 +13,38 @@ body {
 .modal-close:hover {
     color: red !important;
 }
-.modal-content{
-    position: relative!important;
+
+.modal-content {
+    position: relative !important;
 }
 
 .modal-header {
-    position: absolute!important;
-    top: 0!important;
-    right: 0!important;
-    z-index:10 !important;
-    margin-right: -20px!important;
-    margin-top: -20px!important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    z-index: 10 !important;
+    margin-right: -20px !important;
+    margin-top: -20px !important;
 }
 
 /* detail cards */
-.detail-card:hover{
+.detail-card:hover {
     background-color: rgba(235, 87, 87, 0.05);
     border: 1px solid #EB5757;
 }
 
 /* accuracy */
-.accuracy-container{
-    position: relative!important;
+.accuracy-container {
+    position: relative !important;
 }
-.accuracy{
-    position: absolute!important;
-    top: 0!important;
-    right: 0!important;
-    z-index:10 !important;
-    margin-right: 10px!important;
-    margin-top: 10px!important;
+
+.accuracy {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    z-index: 10 !important;
+    margin-right: 10px !important;
+    margin-top: 10px !important;
     padding: 5px;
 }
 
@@ -52,4 +54,4 @@ body {
         height: 15vw;
         object-fit: cover;
     }
-  }
+}

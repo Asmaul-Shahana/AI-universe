@@ -1,18 +1,24 @@
-const loadAI = async (dataLimit) => {
+const loadAI = async (dataLimit, sortDate) => {
 
     toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
-
-    displayAI(dataLimit, data.data.tools);
+    displayAI(dataLimit, data.data.tools, sortDate);
 }
 
-const displayAI = (dataLimit, data) => {
+const displayAI = (dataLimit, data, sortDate) => {
+
+    // ----------------Sort by date-------------------
+    if (sortDate) {
+        data.sort(function (a, b) {
+            return new Date(b.published_in) - new Date(a.published_in);
+        });
+    }
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = '';
 
-    // show all button
+    // show all button condition
     const showAllBtn = document.getElementById('show-all-btn');
     if (dataLimit && data.length > dataLimit) {
         data = data.slice(0, dataLimit);
@@ -67,7 +73,7 @@ const displayAI = (dataLimit, data) => {
     toggleSpinner(false);
 }
 
-
+// ----------------------Spinner/Loader--------------------
 const toggleSpinner = isLoading => {
     const loaderCheck = document.getElementById('loader');
     if (isLoading)
@@ -75,6 +81,8 @@ const toggleSpinner = isLoading => {
     else
         loaderCheck.classList.add('d-none');
 }
+
+// ----------------See more button---------------------
 document.getElementById('btn-show-all').addEventListener('click', function () {
     toggleSpinner(true);
     loadAI();
@@ -94,6 +102,7 @@ const displayAIDetails = data => {
     const cardLower = document.getElementById('card-lower');
     const integrationDetail = document.getElementById('integration-detail');
 
+    // ----------------------Left side card upper half of modal-------------------
     cardUpper.innerHTML = `
     <h5 class="card-title fw-bold mb-3">${data.description}</h5>
     <div class="row row-cols-1 row-cols-md-3 g-3">
@@ -129,7 +138,7 @@ const displayAIDetails = data => {
         </div>
     </div> 
     `;
-
+    // -----------------------Right side card of modal-------------------
     cardLower.innerHTML = `
     <div class="d-flex justify-content-center accuracy-container">
         <img src="${data.image_link[0]}" class="card-img-top" alt="...">
@@ -139,40 +148,41 @@ const displayAIDetails = data => {
             </div>
             <div class="card-body text-center">
                 <h5 class="card-title fw-bold">${data.input_output_examples ?
-                     data.input_output_examples[0].input : "Can you give any example?"}</h5>
+            data.input_output_examples[0].input : "Can you give any example?"}</h5>
                 <p class="card-text">${data.input_output_examples ?
-                    data.input_output_examples[0].output : "No! Not Yet! Take a break!!!"} </p>
+            data.input_output_examples[0].output : "No! Not Yet! Take a break!!!"} </p>
             </div>
     `;
 
-    featuresDetail.innerText='';
-    if(data.features)
-    {
+    // -------------- Features ----------------
+    featuresDetail.innerText = '';
+    if (data.features) {
         for (const fet in data.features) {
             const fetlist = document.createElement('li');
             fetlist.innerText = data.features[fet].feature_name;
             featuresDetail.appendChild(fetlist);
         }
     }
-    else{
-        featuresDetail.innerText='No data Found';
+    else {
+        featuresDetail.innerText = 'No data Found';
     }
-    integrationDetail.innerText='';
-    if(data.integrations)
-    {
-        for(const x of data.integrations)
-    {
-        const intList = document.createElement('li');
-        intList.innerText = x;
-        integrationDetail.appendChild(intList);
+    // -------------- Integrations ----------------
+    integrationDetail.innerText = '';
+    if (data.integrations) {
+        for (const x of data.integrations) {
+            const intList = document.createElement('li');
+            intList.innerText = x;
+            integrationDetail.appendChild(intList);
+        }
     }
-    }
-    else{
+    else {
         integrationDetail.innerText = 'No data Found';
     }
-
-
-
 }
+
+// ------------Sort by date---------------
+document.getElementById('sort-by-date-btn').addEventListener('click', function () {
+    loadAI(0, true);
+});
 
 loadAI(6);
