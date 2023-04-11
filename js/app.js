@@ -97,12 +97,37 @@ const displayAIDetails = data =>{
             <div class="col">
                 <div class="card h-100 detail-card">
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">${data.description}</h5>
-                        
-                        <div>
-                            
+                        <h5 class="card-title fw-bold mb-3">${data.description}</h5>
+                        <div class="row row-cols-1 row-cols-md-3 g-3">
+                            <div class="col">
+                                <div class="h-100 p-2 rounded bg-white text-success fw-bold d-flex justify-content-center align-items-center flex-column">
+                                ${data.pricing ?
+                                `<div>${data.pricing[0].price}</div>`
+                                : `<div class="text-center">Free of Cost/</div>` 
+                                }
+                                <div> ${data.pricing ? data.pricing[0].plan : `No plan`} </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="h-100 p-2 rounded bg-white text-warning fw-bold d-flex justify-content-center align-items-center flex-column">
+                                ${data.pricing ?
+                                `<div>${data.pricing[1].price}</div>`
+                                : `<div class="text-center">Free of Cost/</div>` 
+                                }
+                                <div> ${data.pricing ? data.pricing[1].plan : `No plan`} </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="h-100 p-2 rounded bg-white text-danger fw-bold d-flex justify-content-center align-items-center flex-column">
+                                ${data.pricing ?
+                                `<div>${data.pricing[2].price}</div>`
+                                : `<div class="text-center">Free of Cost/</div>` 
+                                }
+                                <div> ${data.pricing ? data.pricing[2].plan : `No plan`} </div>
+                                </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
@@ -120,6 +145,7 @@ const displayAIDetails = data =>{
             </div>
         </div>
     `;
+    
 }
 
 loadAI(6);
