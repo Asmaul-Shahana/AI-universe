@@ -107,7 +107,11 @@ const displayAIDetails = data =>{
             </div>
             <div class="col">
                 <div class="card h-100 detail-card">
+                    <div class="d-flex justify-content-center accuracy-container">
                     <img src="${data.image_link[0]}" class="card-img-top" alt="...">
+                    ${(data.accuracy.score>0) ?    
+                    `<div class="bg-danger text-white rounded h-3 accuracy"> ${(data.accuracy.score)*100 + "% accuracy" }</div>` : `` }
+                    </div>
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">${data.input_output_examples ? data.input_output_examples[0].input : "Can you give any example?" }</h5>
                         <p class="card-text">${data.input_output_examples ? data.input_output_examples[0].output : "No! Not Yet! Take a break!!!" }</p>

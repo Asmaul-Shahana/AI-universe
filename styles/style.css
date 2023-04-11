@@ -38,3 +38,17 @@ body {
     background-color: rgba(235, 87, 87, 0.05);
     border: 1px solid #EB5757;
 }
+
+/* accuracy */
+.accuracy-container{
+    position: relative!important;
+}
+.accuracy{
+    position: absolute!important;
+    top: 0!important;
+    right: 0!important;
+    z-index:10 !important;
+    margin-right: 10px!important;
+    margin-top: 10px!important;
+    padding: 5px;
+}
