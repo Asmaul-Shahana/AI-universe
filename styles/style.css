@@ -2,13 +2,6 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
-/* Image */
-.ai-image {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-}
-
 /* modal */
 .modal-close {
     background-color: #EB5757 !important;
@@ -52,3 +45,11 @@ body {
     margin-top: 10px!important;
     padding: 5px;
 }
+
+@media screen and (min-width: 480px) {
+    .ai-image {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
+  }
