@@ -9,15 +9,32 @@ body {
     object-fit: cover;
 }
 
-/*  */
+/* modal */
 .modal-close {
     background-color: #EB5757 !important;
     border-radius: 50%;
     --bs-btn-close-color: #FFFFFF !important;
     opacity: 1;
-    position:
 }
 
 .modal-close:hover {
     color: red !important;
+}
+.modal-content{
+    position: relative!important;
+}
+
+.modal-header {
+    position: absolute!important;
+    top: 0!important;
+    right: 0!important;
+    z-index:10 !important;
+    margin-right: -20px!important;
+    margin-top: -20px!important;
+}
+
+/* detail cards */
+.detail-card:hover{
+    background-color: rgba(235, 87, 87, 0.05);
+    border: 1px solid #EB5757;
 }

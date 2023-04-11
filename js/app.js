@@ -24,7 +24,7 @@ const displayAI = (dataLimit, data) => {
     }
 
     data.forEach(ai => {
-        console.log(ai);
+        // console.log(ai);
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
@@ -93,23 +93,24 @@ const displayAIDetails = data =>{
 
     const detailModalBody = document.getElementById('detail-modal-body');
     detailModalBody.innerHTML=`
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row row-cols-1 row-cols-md-2 g-4 m-md-4">
             <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card h-100 detail-card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                    </div>
+                        <h5 class="card-title fw-bold">${data.description}</h5>
+                        
+                        <div>
+                            
+                        </div>
+                        </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a short card.</p>
+                <div class="card h-100 detail-card">
+                    <img src="${data.image_link[0]}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">${data.input_output_examples ? data.input_output_examples[0].input : "Can you give any example?" }</h5>
+                        <p class="card-text">${data.input_output_examples ? data.input_output_examples[0].output : "No! Not Yet! Take a break!!!" }</p>
                     </div>
                 </div>
             </div>
